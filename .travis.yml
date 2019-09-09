@@ -21,7 +21,7 @@ matrix:
     - os: linux
       language: rust
       env:
-        - TARGET=i686-unknown-linux-musl
+        - TARGET=x86_64-unknown-linux-gnu
       script:
         - cargo build --release --target $TARGET --verbose
 
