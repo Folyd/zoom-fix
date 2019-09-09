@@ -22,9 +22,8 @@ matrix:
       language: rust
       env:
         - TARGET=i686-unknown-linux-musl
-        - DOCKER_IMAGE_TAG=i686-musl
       script:
-        - cargo build --release --verbose
+        - cargo build --release --target $TARGET --verbose
 
     # OSX
     - os: osx
