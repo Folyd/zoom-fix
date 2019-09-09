@@ -53,6 +53,8 @@ deploy:
   file_glob: true
   file: $PROJECT_NAME-$TRAVIS_TAG-$TARGET.*
   skip_cleanup: true
+  on:
+    tags: true
 
 before_cache:
   # Travis can't cache files that are not readable by "others"
