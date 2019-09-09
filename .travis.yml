@@ -56,7 +56,7 @@ deploy:
   provider: releases
   api_key:
     # Generate secure token with travis encrypt --pro
-    secure: ""
+    secure: "2XpYX2J8dIlq7HJ0iOzRZKRTDz7aKuTsdp0oTBLebCieM8CzfwT3mQ/3jB+shtSc3iVlSWBD81yE0MZ22aQ4F3q2CVjIgLkv8nJR5xKQ3ugP/vfWmiu6JW19bEBgREdERzxvlrwxoOrFcrCOSzSiHCokLnaDjMcsQG+DJvePXCklsPfqlsuuBfZK9h84fG+dMmY++Qh9r7MSzVgWHDebgzkqBcAyNcHdqzLj7mUnWdrmwvIBoFyIJGWoJ/sqtT3v4jJGXT8y0VONQYiHtN9b8rB1y9lJLQVQEzGVe6gMV4Qg5+gWOOPNhYoWWhOs6FBiKF9IHEXN7pheQ11jL5+WXMQMgUbxDVQPXAEYqtaIJsSO5uN11RAPopekRVYLtndNqWAaMlUYkhsmbLmpu4Ef6nZwMHTlW+W1YcN6l4GNVemtGLQCOFRZ5sNulsGKqwl7puKp/wO96iPmNOBNhuMHX+UGAWAzs+TU+ZcSouFqKGLToNbx2giSAGY3V/AwjLo2MQdGuPLNlPgSovUpN98tpAFZTRZOa6S+Jb5T5u+g5Fuiz1AllHUxOsVjLt7QdZuKGu2jvJyaIq+gdoLn+Vtiea7/ilV1g2bDg9bJ4VMvLn04ZWbH57HG1mmSkHFO/m+Zmm3yKwVs5/D2dJuw0ZzSltIkRB6sfXhFkAxjV239ZeI="
   file_glob: true
   file: $PROJECT_NAME-$TRAVIS_TAG-$TARGET.*
   skip_cleanup: true
