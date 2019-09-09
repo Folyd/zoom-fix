@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 # Building and packaging for release
-
 set -ex
-
-build() {
-    cargo build --target "$TARGET" --release --verbose
-}
 
 pack() {
     local tempdir
@@ -31,9 +26,4 @@ pack() {
     rm -r "$tempdir"
 }
 
-
-main() {
-    pack
-}
-
-main
+pack
