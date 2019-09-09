@@ -1,0 +1,77 @@
+dist: trusty
+language: generic
+services: docker
+sudo: required
+
+env:
+  global:
+    # Default target on travis-ci.
+    # Used as conditional check in the install stage
+    - HOST=x86_64-unknown-linux-gnu
+    - PROJECT_NAME=zoom-fix
+
+cache:
+  directories:
+    - $HOME/.cargo
+    - $TRAVIS_BUILD_DIR/target
+
+matrix:
+  include:
+    # Linux
+    - os: linux
+      env:
+        - TARGET=i686-unknown-linux-musl
+        - DOCKER_IMAGE_TAG=i686-musl
+      script:
+        - cargo build --release --target $TARGET --verbose
+
+    - os: linux
+      env:
+        - TARGET=x86_64-unknown-linux-musl
+        - DOCKER_IMAGE_TAG=x86_64-musl
+      script:
+        - cargo build --release --target $TARGET --verbose
+
+    # OSX
+    - os: osx
+      language: rust
+      env: TARGET=x86_64-apple-darwin
+      script:
+        - cargo build --release --target $TARGET --verbose
+
+    - os: windows
+      language: rust
+      env: TARGET=x86_64-pc-windows-msvc
+      script:
+        - cargo build --release --target $TARGET --verbose
+      before_deploy:
+        - powershell -executionpolicy bypass -File "ci\before_deploy.ps1"
+
+before_install: true
+
+before_deploy:
+  - bash ci/before_deploy.sh
+
+deploy:
+  provider: releases
+  api_key:
+    # Generate secure token with travis encrypt --pro
+    secure: ""
+  file_glob: true
+  file: $PROJECT_NAME-$TRAVIS_TAG-$TARGET.*
+  skip_cleanup: true
+  on:
+    tags: true
+
+before_cache:
+  # Travis can't cache files that are not readable by "others"
+  - chmod -R a+r $HOME/.cargo
+
+branches:
+  only:
+    - "/^v\\d+\\.\\d+\\.\\d+.*$/"
+    - master
+
+notifications:
+  email:
+    on_success: never
