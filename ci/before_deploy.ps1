@@ -1,3 +1,3 @@
 cargo build --release
-Get-ChildItem
-7z a %PROJECT_NAME%-%TRAVIS_TAG%-%TARGET%.zip target\release\%PROJECT_NAME%.exe
+Get-ChildItem target\release
+7z a $Env:PROJECT_NAME-$Env:TRAVIS_TAG-Env:TARGET.zip target\release\$ENV:PROJECT_NAME.exe
